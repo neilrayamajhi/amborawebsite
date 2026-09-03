@@ -1,0 +1,66 @@
+:root {
+  /* ---------- Ambora product palette (design ref §2) ---------- */
+  --bg: #ffffff;
+  --bg-subtle: #f5f5f5;
+  --border: #e0e0e0;
+  --divider: #eeeeee;
+
+  --text-primary: #000000;
+  --text-strong: #333333;
+  --text-secondary: #555555;
+  --text-muted: #737373;
+  --text-faint: #999999;
+
+  --accent-blue: #00aced;
+  --link-blue: #2980b9;
+  --share-cyan: #33c1ff;
+
+  --success: #4CAF50;
+  --error: #f44336;
+  --notification: #eb4034;
+  --spotify: #1DB954;
+
+  /* ---------- Radii (design ref §3) ---------- */
+  --radius-card: 10px;
+  --radius-button: 5px;
+  --radius-pill: 25px;
+  --radius-round: 50%;
+
+  /* ---------- Spacing (design ref §4) ---------- */
+  --space-xs: 5px;
+  --space-sm: 8px;
+  --space-md: 10px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 32px;
+  --space-3xl: 56px;
+
+  /* ---------- Marketing-site motion tokens ---------- */
+  --site-ink: #0a0a0a;
+  --site-bg: #ffffff;
+  --site-muted-ink: #d8d8d6;
+  --site-accent: var(--accent-blue);
+
+  --ease-out-expo:  cubic-bezier(.16, 1, .3, 1);
+  --ease-smooth:    cubic-bezier(.2, .8, .2, 1);
+  --ease-curtain:   cubic-bezier(.76, 0, .24, 1);
+  --ease-slide:     cubic-bezier(.68, -0.05, .28, 1.05);
+
+  /* ---------- Typography stacks ---------- */
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Unbounded', 'Poppins', system-ui, sans-serif;
+  --font-decorative: 'Hedvig Letters Sans', 'Poppins', serif;
+
+  /* ---------- Nav height (used for offsets) ---------- */
+  --nav-height: 68px;
+}
+
+/* Slightly firmer motion baseline for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ease-out-expo: linear;
+    --ease-smooth: linear;
+    --ease-curtain: linear;
+    --ease-slide: linear;
+  }
+}

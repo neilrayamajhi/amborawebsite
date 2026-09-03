@@ -1,0 +1,165 @@
+.contact {
+  --contact-scroll: 0;
+  position: relative;
+  min-height: 100svh;
+  background: #000;
+}
+
+.contact__sticky {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: clamp(64px, 8vh, 96px) 0;
+}
+
+/* Layered backgrounds: the accent panel underneath, the ink curtain on top */
+.contact__panel {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(80% 60% at 50% 40%, rgba(255,255,255,0.16) 0%, transparent 60%),
+    linear-gradient(180deg, var(--site-accent) 0%, #007fb5 100%);
+  z-index: 0;
+}
+
+.contact__curtain {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(80% 60% at 50% 48%, rgba(255,255,255,0.04) 0%, transparent 60%),
+    var(--site-ink);
+  opacity: clamp(0, calc(1 - var(--contact-scroll) * 2.6), 1);
+  transition: opacity 0.15s linear;
+  z-index: 1;
+}
+
+.contact__bignum {
+  position: absolute;
+  right: -5vw;
+  bottom: -12vw;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: min(28vw, 14rem);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255,255,255,0.18);
+  transform: translateY(calc((1 - var(--contact-scroll)) * 60px));
+  pointer-events: none;
+}
+
+.contact__inner {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  display: grid;
+  gap: clamp(20px, 3vh, 40px);
+}
+
+.contact__eyebrow {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  font-variant-numeric: tabular-nums;
+}
+
+.contact__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.25rem, 10vw, 7.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  color: #fff;
+  margin: 0;
+}
+.contact__title-line { display: block; }
+.contact__title-line--1 {
+  transform: translate3d(
+    calc(var(--contact-scroll) * -2.5vw),
+    calc(var(--contact-scroll) * -3vh),
+    0
+  ) rotate(calc(var(--contact-scroll) * -0.6deg));
+  transition: transform 0.15s linear;
+}
+.contact__title-line--2 {
+  font-style: italic;
+  padding-left: clamp(1rem, 6vw, 6rem);
+  color: transparent;
+  -webkit-text-stroke: 1.5px #fff;
+  transform: translate3d(
+    calc(var(--contact-scroll) * 2.5vw),
+    calc(var(--contact-scroll) * 3vh),
+    0
+  ) rotate(calc(var(--contact-scroll) * 0.6deg));
+  transition: transform 0.15s linear;
+}
+
+.contact__lede {
+  max-width: 52ch;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.55;
+  color: rgba(255,255,255,0.85);
+}
+
+/* Email pill with fill-on-hover */
+.contact__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  padding: 18px 28px;
+  border: 1px solid rgba(255,255,255,0.85);
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(18px, 2.2vw, 26px);
+  color: #fff;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color .4s var(--ease-smooth);
+  justify-self: start;
+  width: max-content;
+  max-width: 100%;
+}
+.contact__email::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform .5s var(--ease-out-expo);
+  z-index: -1;
+  border-radius: inherit;
+}
+.contact__email:hover { color: var(--site-accent); }
+.contact__email:hover::before { transform: scaleX(1); }
+.contact__email-arrow {
+  display: inline-flex;
+  transition: transform .35s var(--ease-smooth);
+}
+.contact__email:hover .contact__email-arrow { transform: translate(4px, -4px); }
+
+.contact__support {
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+}
+.contact__support a {
+  color: #fff;
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+.contact__support a:hover { opacity: 0.75; }
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__curtain { display: none; }
+  .contact__title-line--1, .contact__title-line--2 { transform: none; }
+  .contact__bignum { transform: none; }
+}

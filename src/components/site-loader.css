@@ -1,0 +1,100 @@
+html.loading, html.loading body { overflow: hidden; }
+
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--bg);
+  color: var(--text-primary);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 900ms var(--ease-curtain);
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.site-loader[data-phase='exiting'] {
+  clip-path: inset(0 0 100% 0);
+}
+
+.site-loader::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(55% 40% at 50% 45%, rgba(0, 0, 0, 0.04) 0%, transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+  pointer-events: none;
+}
+
+.site-loader__stack {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: 26px;
+  width: min(100%, 1200px);
+  text-align: center;
+}
+
+.site-loader__wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3rem, 12vw, 11rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+.site-loader__slash {
+  color: var(--site-accent);
+  font-style: italic;
+  font-weight: 400;
+  padding: 0 8px;
+}
+
+.site-loader__progress {
+  width: min(360px, 60vw);
+  height: 2px;
+  background: var(--border);
+  overflow: hidden;
+}
+.site-loader__progress-bar {
+  width: 100%;
+  height: 100%;
+  background: var(--text-primary);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 90ms linear;
+}
+
+.site-loader__counter {
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  display: inline-flex;
+  gap: 10px;
+  align-items: baseline;
+}
+.site-loader__counter-of { opacity: 0.5; }
+
+.site-loader__slogan {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+}
+.site-loader__slogan-dot { color: var(--site-accent); }
+
+@media (max-width: 640px) {
+  .site-loader__slogan { left: 20px; bottom: 24px; }
+}

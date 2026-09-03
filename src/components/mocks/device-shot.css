@@ -1,0 +1,19 @@
+.device {
+  margin: 0;
+  width: 100%;
+  max-width: 420px;
+  background: #0a0a0a;
+  border-radius: 36px;
+  padding: 8px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.16);
+  line-height: 0;
+}
+
+.device img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 28px;
+  background: #fff;
+  vertical-align: top;
+}
