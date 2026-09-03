@@ -1,5 +1,5 @@
 import { useRef, type ReactNode } from 'react';
-import { useScrollProgress } from '../hooks/useScrollProgress';
+import { useInView } from '../hooks/useInView';
 import { DeviceShot } from './mocks/DeviceShot';
 import './features.css';
 
@@ -14,10 +14,10 @@ interface FeatureProps {
 
 function Feature({ index, eyebrow, title, copy, shot, align = 'right' }: FeatureProps) {
   const ref = useRef<HTMLDivElement>(null);
-  useScrollProgress(ref, '--feature-progress');
+  const inView = useInView(ref, 0.18);
 
   return (
-    <article className={`feature feature--${align}`} ref={ref}>
+    <article className={`feature feature--${align}${inView ? ' is-in' : ''}`} ref={ref}>
       <div className="feature__sticky">
         <span className="feature__bignum" aria-hidden="true">{index}</span>
 
@@ -56,7 +56,7 @@ export function Features() {
           alt: 'Ambora ranked list of songs',
           label: 'Ranked list — Songs',
         }}
-        align="right"
+        align="left"
       />
 
       <Feature
@@ -69,7 +69,7 @@ export function Features() {
           alt: 'Ambora profile with ranked category tiles',
           label: 'Profile — categories',
         }}
-        align="left"
+        align="right"
       />
 
       <Feature
@@ -82,7 +82,7 @@ export function Features() {
           alt: 'Ambora rate and compare flow',
           label: 'Rate & compare',
         }}
-        align="right"
+        align="left"
       />
     </section>
   );

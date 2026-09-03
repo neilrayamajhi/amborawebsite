@@ -1,3 +1,5 @@
+import { useRef, type CSSProperties } from 'react';
+import { useInView } from '../hooks/useInView';
 import { DeviceShot } from './mocks/DeviceShot';
 import './app-showcase.css';
 
@@ -29,8 +31,11 @@ const screens = [
 ];
 
 export function AppShowcase() {
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, 0.12);
+
   return (
-    <section className="showcase" id="app">
+    <section className={`showcase${inView ? ' is-in' : ''}`} id="app" ref={ref}>
       <header className="showcase__intro container">
         <div className="showcase__eyebrow">
           <span>04</span>
@@ -49,7 +54,7 @@ export function AppShowcase() {
 
       <div className="showcase__grid container" role="region" aria-label="App screens">
         {screens.map((s, i) => (
-          <figure className="showcase__card" key={s.label}>
+          <figure className="showcase__card" key={s.label} style={{ '--i': i } as CSSProperties}>
             <DeviceShot src={s.src} alt={s.alt} label={s.label} />
             <figcaption className="showcase__caption">
               <span className="showcase__idx">0{i + 1}</span>

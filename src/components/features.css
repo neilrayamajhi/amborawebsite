@@ -7,14 +7,13 @@
 
 /* ---------- Feature panel ---------- */
 .feature {
-  --feature-progress: 0;
   position: relative;
 }
 
 .feature__sticky {
   position: relative;
   min-height: unset;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   align-items: center;
   padding: clamp(48px, 7vh, 80px) 0;
@@ -33,9 +32,11 @@
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.12);
   pointer-events: none;
-  transform: translateY(calc((1 - var(--feature-progress)) * 40px));
-  transition: transform 0.15s linear;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out-expo) 0.2s, transform 0.9s var(--ease-out-expo) 0.2s;
 }
+.feature.is-in .feature__bignum { opacity: 1; transform: none; }
 .feature--left .feature__bignum {
   right: auto;
   left: -3vw;
@@ -58,6 +59,36 @@
 
 /* ---------- Text side ---------- */
 .feature__body { max-width: 640px; }
+
+.feature__eyebrow,
+.feature__title,
+.feature__copy {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out-expo), transform 0.7s var(--ease-out-expo);
+}
+.feature.is-in .feature__eyebrow { opacity: 1; transform: none; }
+.feature.is-in .feature__title { opacity: 1; transform: none; transition-delay: 80ms; }
+.feature.is-in .feature__copy { opacity: 1; transform: none; transition-delay: 160ms; }
+
+.feature__media {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.feature--left .feature__media {
+  justify-content: flex-start;
+}
+.feature__media .device {
+  max-width: 400px;
+  opacity: 0;
+  transform: translateY(48px) scale(0.96);
+  transition: opacity 0.85s var(--ease-out-expo) 0.12s, transform 0.85s var(--ease-out-expo) 0.12s;
+}
+.feature.is-in .feature__media .device {
+  opacity: 1;
+  transform: none;
+}
 
 .feature__eyebrow {
   display: flex;
@@ -101,19 +132,6 @@
   margin-bottom: 0;
 }
 
-/* ---------- Media side ---------- */
-.feature__media {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-.feature--left .feature__media {
-  justify-content: flex-start;
-}
-.feature__media .device {
-  max-width: 400px;
-}
-
 @media (max-width: 960px) {
   .feature__grid, .feature--left .feature__grid { grid-template-columns: 1fr; gap: 32px; }
   .feature--left .feature__body { order: 1; }
@@ -124,5 +142,13 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .feature__bignum { transform: none; }
+  .feature__eyebrow,
+  .feature__title,
+  .feature__copy,
+  .feature__media .device,
+  .feature__bignum {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
