@@ -1,5 +1,5 @@
 import { ScoreBadge } from './ScoreBadge';
-import { APP_STORE_URL, SUPPORT_EMAIL } from '../lib/links';
+import { APP_STORE_URL, MAC_DOWNLOAD_URL, SUPPORT_EMAIL } from '../lib/links';
 import './footer.css';
 
 export function Footer() {
@@ -30,6 +30,7 @@ export function Footer() {
             <a href={APP_STORE_URL} target="_blank" rel="noopener noreferrer">
               App Store
             </a>
+            <a href={MAC_DOWNLOAD_URL} download>Mac app</a>
             <a href="#contact">Download</a>
           </div>
           <div className="footer__col">
@@ -46,7 +47,7 @@ export function Footer() {
 
         <div className="footer__bottom">
           <span>© {year} · Ambora Social</span>
-          <span className="footer__tick">v1.0 · iPhone · App Store</span>
+          <span className="footer__tick">v1.0 · iPhone · Mac · App Store</span>
           <span>Made with a lot of opinions.</span>
         </div>
       </div>

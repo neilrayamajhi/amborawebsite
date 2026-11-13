@@ -66,6 +66,11 @@
   opacity: 1;
 }
 
+/* A Mac download is no use on a phone, and on narrower laptops the nav gets crowded, so it only shows on wide screens. */
+@media (max-width: 900px) {
+  .nav__cta--mac { display: none; }
+}
+
 @media (max-width: 640px) {
   .nav__links a:not(.nav__cta) { display: none; }
 }
