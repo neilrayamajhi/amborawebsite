@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { APP_STORE_URL } from '../lib/links';
+import { APP_STORE_URL, MAC_DOWNLOAD_URL } from '../lib/links';
 import './nav.css';
 
 export function Nav() {
@@ -23,6 +23,12 @@ export function Nav() {
         <a href="#about">About</a>
         <a href="#features">Features</a>
         <a href="#app">The App</a>
+        <a href={MAC_DOWNLOAD_URL} className="nav__cta nav__cta--mac" download>
+          Download for Mac
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <path d="M5 1.5V7.5M5 7.5L2.5 5M5 7.5L7.5 5M1.5 9H8.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </a>
         <a
           href={APP_STORE_URL}
           className="nav__cta"

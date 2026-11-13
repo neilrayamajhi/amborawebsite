@@ -108,6 +108,14 @@
   color: rgba(255,255,255,0.85);
 }
 
+/* The App Store button and the Mac button sit side by side, and wrap onto two lines on narrow screens. */
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
 /* Email pill with fill-on-hover */
 .contact__email {
   display: inline-flex;
@@ -157,6 +165,19 @@
   text-underline-offset: 3px;
 }
 .contact__support a:hover { opacity: 0.75; }
+
+/* The Mac button is the quieter of the two: smaller and softer outline. */
+.contact__email--mac {
+  padding: 14px 24px;
+  border-color: rgba(255,255,255,0.5);
+  font-size: clamp(15px, 1.6vw, 19px);
+}
+.contact__email--mac:hover { border-color: #fff; }
+
+/* No Mac download on a phone. */
+@media (max-width: 640px) {
+  .contact__email--mac { display: none; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .contact__curtain { display: none; }
